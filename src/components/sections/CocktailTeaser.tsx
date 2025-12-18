@@ -10,19 +10,19 @@ const featuredCocktails = [
         id: "Pornstar Martini",
         name: "Pornstar Martini",
         description: "Ginebra, hibisco infuso, limón siciliano y humo de romero.",
-        image: "/pornstar_martini.png",
+        image: "/images/pornstar_martini.png",
         label: "Signature"
     },
     {
         id: "mumbai-gold",
         name: "Espresso Martini",
-        image: "/ab.jpeg",
+        image: "/images/image1.png",
         label: "Signature"
     },
     {
         id: "midnight-lotus",
         name: "Midnight Lotus",
-        image: "/image2.png",
+        image: "/images/image2.png",
         label: "Dark Spirit"
     }
 ];
