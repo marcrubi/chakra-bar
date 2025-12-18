@@ -16,12 +16,14 @@ const featuredCocktails = [
     {
         id: "mumbai-gold",
         name: "Espresso Martini",
+        description: "vodka, espresso (café), licor de café, sirope de azúcar (opcional), granos de café (decoración)",
         image: "/images/image1.png",
         label: "Signature"
     },
     {
         id: "midnight-lotus",
-        name: "Midnight Lotus",
+        name: "Manhattan",
+        description:"base (ginebra o whisky), vermut rojo, bitters, twist de limón; si es Martinez añade licor de marrasquino",
         image: "/images/image2.png",
         label: "Dark Spirit"
     }
