@@ -1,13 +1,99 @@
 @import "tailwindcss";
 
-/* Esta línea es mágica: le dice a la nueva versión que lea tu config antigua */
-@config "../../tailwind.config.ts";
+@theme {
+    /* Colores personalizados */
+    --color-background: #050505;
+    --color-foreground: #e5e5e5;
 
-@layer base {
-    body {
-        @apply bg-background text-foreground;
+    --color-primary: #590d0d;
+    --color-primary-foreground: #ffe5e5;
+
+    --color-ruby: #e60023;
+    --color-ruby-glow: #ff1f1f;
+
+    --color-accent: #c5a059;
+    --color-accent-hover: #d4af37;
+
+    --color-muted: #a3a3a3;
+    --color-muted-foreground: #737373;
+
+    /* Fuentes */
+    --font-sans: var(--font-sans), system-ui, sans-serif;
+    --font-serif: var(--font-serif), Georgia, serif;
+
+    /* Sombras personalizadas */
+    --shadow-glow-ruby: 0 10px 40px -10px rgba(230, 0, 35, 0.4);
+    --shadow-glow-gold: 0 10px 40px -10px rgba(197, 160, 89, 0.3);
+
+    /* Animaciones */
+    --animate-float: float 6s ease-in-out infinite;
+    --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
     }
-    h1, h2, h3, h4, h5, h6 {
-        @apply font-serif;
+    50% {
+        transform: translateY(-20px);
     }
+}
+
+/* Estilos base */
+body {
+    font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(89, 13, 13, 0.3);
+    border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(89, 13, 13, 0.5);
+}
+
+/* Selección de texto */
+::selection {
+    background-color: #e60023;
+    color: white;
+}
+
+::-moz-selection {
+    background-color: #e60023;
+    color: white;
+}
+
+/* Efectos de texto con glow */
+.text-glow-ruby {
+    text-shadow: 0 0 20px rgba(230, 0, 35, 0.5);
+}
+
+.text-glow-gold {
+    text-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
+}
+
+/* Filtro cinematográfico */
+.filter-cinematic {
+    filter: contrast(1.1) brightness(0.95) saturate(1.1);
+}
+
+/* Backdrop blur mejorado */
+.backdrop-blur-luxury {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
 }

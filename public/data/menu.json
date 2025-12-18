@@ -1,0 +1,52 @@
+{
+  "categories": [
+    {
+      "id": "signatures",
+      "title": "Chakra Signatures",
+      "items": [
+        {
+          "id": "peaches-beaches",
+          "name": "Peaches and Beaches",
+          "description": "Rum, Lemon juice, Peach, Peach liqueur, Ginger ale",
+          "price": "16€",
+          "tags": ["Signature", "Fruity"]
+        },
+        {
+          "id": "lychee-blossom",
+          "name": "Lychee Blossom",
+          "description": "Vodka, Lychee liquor, Strawberry, Watermelon, Lemon peel",
+          "price": "17€",
+          "tags": ["Signature", "Exotic"]
+        },
+        {
+          "id": "sunny-spritz",
+          "name": "Sunny Spritz",
+          "description": "Aperol, Lemon juice, Passoa, Watermelon, Grapefruit soda",
+          "price": "15€",
+          "tags": ["Signature", "Refreshing"]
+        },
+        {
+          "id": "gold-mans",
+          "name": "Gold Man's",
+          "description": "Whiskey, Honey, Lemon, Angostura bitter, Amaro, Orange peel",
+          "price": "18€",
+          "tags": ["Signature", "Classic"]
+        },
+        {
+          "id": "sweet-dreams",
+          "name": "Sweet Dreams",
+          "description": "Vanilla vodka, Baileys, Chocolate, Frangelico",
+          "price": "16€",
+          "tags": ["Signature", "Dessert"]
+        },
+        {
+          "id": "fire-effects",
+          "name": "Fire Effects",
+          "description": "Jalapeño, Mezcal, Charteuse, Lime juice, Ginger, Pomelo soda",
+          "price": "17€",
+          "tags": ["Signature", "Spicy"]
+        }
+      ]
+    }
+  ]
+}

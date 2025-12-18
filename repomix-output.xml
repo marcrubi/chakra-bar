@@ -42,6 +42,10 @@ The content is organized as follows:
 
 <directory_structure>
 public/
+  images/
+    image1.png
+    image2.png
+    pornstar_martini.png
   file.svg
   globe.svg
   next.svg
@@ -54,6 +58,16 @@ src/
     favicon.ico
     layout.tsx
     page.tsx
+  components/
+    layout/
+      Footer.tsx
+    sections/
+      Atmosphere.tsx
+      CocktailTeaser.tsx
+      Contact.tsx
+      Hero.tsx
+    ui/
+      PhotoFrame.tsx
   lib/
     utils.ts
 .gitignore
@@ -67,257 +81,562 @@ tailwind.config.ts
 <files>
 This section contains the contents of the repository's files.
 
-<file path="src/app/carta/page.tsx">
+<file path="src/components/layout/Footer.tsx">
 "use client";
 
 import { motion } from "framer-motion";
-import { menuData } from "@src/data/menu"; // Asegúrate que la ruta sea correcta
+import { Instagram } from "lucide-react";
+
+export default function Footer() {
+    return (
+        <footer className="bg-black pt-32 pb-12 px-6 border-t border-white/5 relative overflow-hidden">
+            {/* Luz ambiental */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-accent/15 blur-[120px] rounded-full pointer-events-none" />
+
+            <div className="max-w-7xl mx-auto flex flex-col items-center justify-center text-center space-y-12 relative z-10">
+                {/* Logo grande decorativo */}
+                <motion.h2
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    className="text-[12vw] md:text-[8vw] font-serif text-white/5 leading-none select-none hover:text-white/10 transition-colors duration-700"
+                >
+                    CHAKRA
+                </motion.h2>
+
+                {/* Navegación */}
+                <motion.nav
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="flex flex-col md:flex-row gap-8 md:gap-16 items-center text-xs tracking-[0.2em] uppercase text-muted font-light"
+                >
+                    <motion.a
+                        href="#"
+                        whileHover={{ scale: 1.05, color: "rgb(197, 160, 89)" }}
+                        transition={{ duration: 0.2 }}
+                        className="hover:text-accent transition-colors"
+                    >
+                        Política de Privacidad
+                    </motion.a>
+
+                    <motion.a
+                        href="https://www.instagram.com/chakrabarmallorca/?hl=es"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.2 }}
+                        className="flex items-center gap-2 text-white hover:text-ruby-glow transition-colors border border-white/10 px-6 py-3 rounded-full hover:border-ruby/30"
+                    >
+                        <Instagram size={16} />
+                        Instagram
+                    </motion.a>
+
+                    <motion.a
+                        href="#"
+                        whileHover={{ scale: 1.05, color: "rgb(197, 160, 89)" }}
+                        transition={{ duration: 0.2 }}
+                        className="hover:text-accent transition-colors"
+                    >
+                        Aviso Legal
+                    </motion.a>
+                </motion.nav>
+
+                {/* Copyright */}
+                <motion.p
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    className="text-white/20 text-[10px] tracking-widest pt-8"
+                >
+                    © 2025 PALMA DE MALLORCA
+                </motion.p>
+            </div>
+        </footer>
+    );
+}
+</file>
+
+<file path="src/components/sections/Atmosphere.tsx">
+"use client";
+
+import { motion } from "framer-motion";
+import PhotoFrame from "@/components/ui/PhotoFrame";
+
+export default function Atmosphere() {
+    return (
+        <section className="py-24 md:py-32 px-6 max-w-[1400px] mx-auto">
+            <div className="flex flex-col md:flex-row gap-12 md:gap-24 items-center">
+                {/* Columna de texto */}
+                <motion.div
+                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="md:w-1/3 space-y-8 order-2 md:order-1 text-center md:text-left"
+                >
+                    <div>
+                        <motion.span
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            className="text-accent text-xs md:text-sm tracking-[0.3em] uppercase font-sans font-semibold mb-4 block"
+                        >
+                            Estética
+                        </motion.span>
+                        <motion.h3
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
+                            className="text-4xl md:text-5xl lg:text-6xl font-serif text-white"
+                        >
+                            El Espacio
+                        </motion.h3>
+                    </div>
+
+                    <motion.div
+                        initial={{ scaleX: 0 }}
+                        whileInView={{ scaleX: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        className="w-12 h-[1px] bg-accent/50 mx-auto md:mx-0 origin-left"
+                    />
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.5 }}
+                        className="font-sans font-light text-muted leading-loose text-lg"
+                    >
+                        Un santuario de sombras y luces cálidas. Diseñado para perder la
+                        noción del tiempo, donde cada rincón cuenta una historia susurrada.
+                    </motion.p>
+
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.6 }}
+                        className="pt-4"
+                    >
+                        <p className="font-serif text-2xl italic text-ruby-glow opacity-80">
+                            "La noche empieza cuando cruzas la puerta."
+                        </p>
+                    </motion.div>
+                </motion.div>
+
+                {/* Grid de fotos con efecto collage */}
+                <div className="md:w-2/3 h-[600px] relative order-1 md:order-2 w-full">
+                    {/* Foto principal de fondo */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="absolute top-0 right-0 w-[85%] h-[85%] z-0 grayscale hover:grayscale-0 transition-all duration-1000"
+                    >
+                        <PhotoFrame
+                            label="Main Room"
+                            alt="Sala principal del bar"
+                            className="h-full w-full opacity-60 hover:opacity-100"
+                        />
+                    </motion.div>
+
+                    {/* Foto detalle superpuesta */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -30, y: 30 }}
+                        whileInView={{ opacity: 1, x: 0, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                        className="absolute bottom-0 left-0 w-[45%] h-[55%] z-10 shadow-2xl border border-white/5 bg-background"
+                    >
+                        <PhotoFrame
+                            label="Detalle Textura"
+                            alt="Detalle decorativo"
+                            className="h-full w-full"
+                        />
+                    </motion.div>
+
+                    {/* Marco decorativo dorado */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 1.05 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.3 }}
+                        className="absolute top-12 right-12 w-[85%] h-[85%] border border-accent/20 pointer-events-none z-20"
+                    />
+                </div>
+            </div>
+        </section>
+    );
+}
+</file>
+
+<file path="src/components/sections/CocktailTeaser.tsx">
+"use client";
+
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import PhotoFrame from "@/components/ui/PhotoFrame";
 
-export default function MenuPage() {
-    return (
-        <div className="min-h-screen bg-background text-foreground pb-20">
-
-            {/* --- CABECERA DE LA CARTA --- */}
-            <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-white/5 px-6 py-4 flex items-center justify-between">
-                <Link href="/" className="text-muted hover:text-white transition-colors">
-                    <ArrowLeft size={20} />
-                </Link>
-                <span className="font-serif text-xl tracking-widest text-accent">CHACKRA</span>
-                <div className="w-5" /> {/* Espaciador para centrar el logo */}
-            </header>
-
-            {/* --- CONTENIDO --- */}
-            <main className="px-6 pt-8 max-w-2xl mx-auto">
-
-                {/* Título de la página */}
-                <div className="text-center mb-12 space-y-2">
-                    <h1 className="text-4xl font-serif text-white">Nuestra Carta</h1>
-                    <p className="text-muted text-sm italic">Una selección de sabores místicos</p>
-                </div>
-
-                {/* Iteramos por categorías */}
-                <div className="space-y-16">
-                    {menuData.map((category, catIndex) => (
-                        <section key={category.title}>
-
-                            {/* Título de Categoría (Sticky para que se vea al bajar) */}
-                            <h2 className="text-2xl font-serif text-primary-foreground mb-6 border-b border-primary/20 pb-2 inline-block">
-                                {category.title}
-                            </h2>
-
-                            <div className="space-y-8">
-                                {category.items.map((item, index) => (
-                                    <motion.div
-                                        key={item.id}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: index * 0.1, duration: 0.5 }}
-                                        className="group relative"
-                                    >
-                                        <div className="flex justify-between items-baseline mb-1">
-                                            <h3 className="text-xl font-serif text-white group-hover:text-accent transition-colors duration-300">
-                                                {item.name}
-                                            </h3>
-                                            {/* Línea punteada decorativa entre nombre y precio */}
-                                            <div className="flex-grow mx-4 border-b border-white/10 border-dotted h-1 opacity-30" />
-                                            <span className="text-lg font-serif text-accent">{item.price}</span>
-                                        </div>
-
-                                        <p className="text-muted text-sm font-light leading-relaxed max-w-[90%]">
-                                            {item.description}
-                                        </p>
-
-                                        {/* Etiquetas (Tags) si existen */}
-                                        {item.tags && (
-                                            <div className="mt-2 flex gap-2">
-                                                {item.tags.map(tag => (
-                                                    <span key={tag} className="text-[10px] uppercase tracking-wider text-accent/80 border border-accent/20 px-2 py-0.5 rounded-full">
-                            {tag}
-                          </span>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </section>
-                    ))}
-                </div>
-            </main>
-
-            {/* Footer simple de la carta */}
-            <footer className="mt-20 text-center text-muted text-xs px-6">
-                <p>Precios con IVA incluido.</p>
-                <p>Si tiene alguna alergia, por favor consulte a nuestro personal.</p>
-            </footer>
-        </div>
-    );
-}
-</file>
-
-<file path="src/app/layout.tsx">
-import type { Metadata } from "next";
-import { Playfair_Display, Lato } from "next/font/google";
-import "./globals.css";
-
-// Títulos elegantes
-const playfair = Playfair_Display({
-    subsets: ["latin"],
-    variable: "--font-serif",
-    display: "swap",
-});
-
-// Texto legible
-const lato = Lato({
-    subsets: ["latin"],
-    weight: ["300", "400", "700"], // Importante el 300 para elegancia
-    variable: "--font-sans",
-    display: "swap",
-});
-
-export const metadata: Metadata = {
-    title: "Chackra | Cocktail Bar",
-    description: "Experience the essence of luxury cocktails.",
-};
-
-export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
-    children: React.ReactNode;
-}>) {
-    return (
-        <html lang="es" className="scroll-smooth">
-        <body
-            className={`${lato.variable} ${playfair.variable} font-sans bg-background text-foreground antialiased selection:bg-primary selection:text-white`}
-        >
-        {children}
-        </body>
-        </html>
-    );
-}
-</file>
-
-<file path="src/app/page.tsx">
-import Image from "next/image";
-
-export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
-}
-</file>
-
-<file path="src/lib/utils.ts">
-// lib/utils.ts
-import { type ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-    return twMerge(clsx(inputs));
-}
-</file>
-
-<file path="tailwind.config.ts">
-import type { Config } from "tailwindcss";
-
-const config: Config = {
-    // CORRECCIÓN AQUÍ: Añadimos 'src/' a las rutas
-    content: [
-        "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-        "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    ],
-    theme: {
-        extend: {
-            colors: {
-                // Fondo: 'Rich Black'
-                background: "#050505",
-
-                // Color primario: 'Deep Crimson'
-                primary: {
-                    DEFAULT: "#590d0d",
-                    foreground: "#ffe5e5",
-                },
-
-                // Acento: 'Muted Gold'
-                accent: {
-                    DEFAULT: "#c5a059",
-                    hover: "#d4af37",
-                },
-
-                // Texto
-                foreground: "#e5e5e5",
-                muted: "#a3a3a3",
-            },
-            fontFamily: {
-                sans: ["var(--font-sans)"],
-                serif: ["var(--font-serif)"],
-            },
-        },
+const featuredCocktails = [
+    {
+        id: "Pornstar Martini",
+        name: "Pornstar Martini",
+        description: "Ginebra, hibisco infuso, limón siciliano y humo de romero.",
+        image: "/pornstar_martini.png",
+        label: "Signature"
     },
-    plugins: [],
+    {
+        id: "mumbai-gold",
+        name: "Espresso Martini",
+        image: "/image1.png",
+        label: "Signature"
+    },
+    {
+        id: "midnight-lotus",
+        name: "Midnight Lotus",
+        image: "/image2.png",
+        label: "Dark Spirit"
+    }
+];
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.2,
+            delayChildren: 0.3
+        }
+    }
 };
-export default config;
+
+const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.8,
+            ease: "easeOut"
+        }
+    }
+};
+
+export default function CocktailTeaser() {
+    return (
+        <section className="py-24 md:py-32 px-6 max-w-7xl mx-auto relative border-t border-primary/10">
+            {/* Luz ambiental de fondo */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/20 blur-[150px] rounded-full pointer-events-none" />
+
+            <div className="relative z-10">
+                {/* Encabezado */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6"
+                >
+                    <div>
+                        <motion.span
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            className="text-accent text-xs md:text-sm tracking-[0.3em] uppercase font-sans font-semibold mb-4 block"
+                        >
+                            Selección de Autor
+                        </motion.span>
+                        <motion.h3
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
+                            className="text-4xl md:text-5xl lg:text-6xl font-serif text-white"
+                        >
+                            La Alquimia
+                        </motion.h3>
+                    </div>
+
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                    >
+                        <Link
+                            href="/carta"
+                            className="group flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-muted hover:text-accent transition-colors pb-1 border-b border-transparent hover:border-accent"
+                        >
+                            Carta Completa
+                            <ArrowRight
+                                size={14}
+                                className="group-hover:translate-x-1 transition-transform text-accent"
+                            />
+                        </Link>
+                    </motion.div>
+                </motion.div>
+
+                {/* Grid de cócteles */}
+                <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="grid md:grid-cols-3 gap-12"
+                >
+                    {featuredCocktails.map((cocktail, index) => (
+                        <motion.div
+                            key={cocktail.id}
+
+                            className="group cursor-pointer space-y-6 transition-transform duration-500 hover:scale-[1.02]"
+                            style={{
+                                marginTop: index === 1 ? '3rem' : '0'
+                            }}
+                            whileHover={{ y: -8 }}
+                        >
+                            <div className="relative aspect-[3/4] rounded-sm overflow-hidden shadow-2xl shadow-black/50">
+                                <PhotoFrame
+                                    src={cocktail.image}
+                                    label={cocktail.label}
+                                    alt={cocktail.name}
+                                    className="h-full w-full"
+                                />
+                                <div className="absolute -inset-2 border border-transparent group-hover:border-accent/30 transition-all duration-700 pointer-events-none" />
+
+                                {/* Brillo que aparece al hover */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-ruby/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            </div>
+
+                            <div className="text-center md:text-left">
+                                <h4 className="text-2xl font-serif text-white group-hover:text-ruby-glow transition-colors duration-500">
+                                    {cocktail.name}
+                                </h4>
+                                <div className="w-8 h-[1px] bg-accent/30 my-3 mx-auto md:mx-0 group-hover:w-16 transition-all duration-500" />
+                                <p className="text-muted text-sm font-light leading-relaxed">
+                                    {cocktail.description}
+                                </p>
+                            </div>
+                        </motion.div>
+                    ))}
+                </motion.div>
+            </div>
+        </section>
+    );
+}
+</file>
+
+<file path="src/components/sections/Contact.tsx">
+"use client";
+
+import { motion } from "framer-motion";
+import { Mail, MapPin, Clock, ExternalLink } from "lucide-react";
+
+const contactItems = [
+    {
+        icon: MapPin,
+        title: "Ubicación",
+        content: (
+            <>
+                <p className="text-muted font-light leading-relaxed">
+                    Carrer de Sant Magí, 40<br />
+                    Santa Catalina, Palma
+                </p>
+                <a
+                    href="https://www.google.es/maps/place/Chakra/@39.5705616,2.6351267,17z/data=!3m1!4b1!4m6!3m5!1s0x12979267e1020645:0x3b97f1a7d3c1c58f!8m2!3d39.5705616!4d2.6377016!16s%2Fg%2F11c523vg67?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs uppercase tracking-widest text-accent mt-4 border-b border-accent/20 pb-1 hover:border-accent transition-colors"
+                >
+                    Ver en Mapa <ExternalLink size={10} />
+                </a>
+            </>
+        )
+    },
+    {
+        icon: Clock,
+        title: "Horario",
+        content: (
+            <div className="text-muted font-light leading-relaxed space-y-1">
+                <div className="flex justify-between gap-8 border-b border-white/5 pb-2 mb-2">
+                    <span>Miércoles — Domingo</span>
+                    <span className="text-white">19:00 — 03:00</span>
+                </div>
+            </div>
+        )
+    },
+    {
+        icon: Mail,
+        title: "Privado y Eventos",
+        content: (
+            <>
+                <p className="text-muted font-light mb-4">
+                    Reservas exclusivas para nuestra sala secreta.
+                </p>
+                <a
+                    href="mailto:reservas@chakra.bar"
+                    className="text-2xl font-serif text-white hover:text-ruby-glow transition-colors border-b border-white/10 hover:border-ruby/50 pb-1 inline-block"
+                >
+                    reservas@chakra.bar
+                </a>
+            </>
+        )
+    }
+];
+
+export default function Contact() {
+    return (
+        <section className="relative py-24 md:py-32 px-6 max-w-7xl mx-auto border-t border-primary/10">
+            {/* Luz ambiental sutil */}
+            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/15 blur-[150px] rounded-full pointer-events-none" />
+
+            <div className="relative z-10">
+                {/* Encabezado */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-20"
+                >
+          <span className="text-accent text-xs md:text-sm tracking-[0.3em] uppercase font-sans font-semibold mb-4 block">
+            Encuéntranos
+          </span>
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-6">
+                        Visítanos
+                    </h2>
+                    <p className="text-muted text-lg font-light max-w-2xl mx-auto">
+                        Un lugar donde la noche cobra vida. Te esperamos en el corazón de Santa Catalina.
+                    </p>
+                </motion.div>
+
+                {/* Grid de información */}
+                <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+                    {contactItems.map((item, index) => {
+                        const Icon = item.icon;
+                        return (
+                            <motion.div
+                                key={item.title}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: index * 0.2 }}
+                                className="group relative"
+                            >
+                                {/* Borde decorativo que aparece al hover */}
+                                <div className="absolute -inset-4 border border-transparent group-hover:border-accent/20 transition-all duration-700 pointer-events-none rounded-sm" />
+
+                                <div className="relative space-y-6 text-center md:text-left">
+                                    {/* Icono */}
+                                    <div className="flex justify-center md:justify-start">
+                                        <div className="w-12 h-12 rounded-full bg-primary/20 border border-accent/30 flex items-center justify-center group-hover:bg-primary/30 group-hover:border-accent/50 transition-all duration-500">
+                                            <Icon className="text-accent" size={20} />
+                                        </div>
+                                    </div>
+
+                                    {/* Título */}
+                                    <h3 className="text-2xl font-serif text-white group-hover:text-accent transition-colors duration-500">
+                                        {item.title}
+                                    </h3>
+
+                                    {/* Divider */}
+                                    <div className="w-12 h-[1px] bg-accent/30 mx-auto md:mx-0 group-hover:w-20 transition-all duration-500" />
+
+                                    {/* Contenido */}
+                                    <div>{item.content}</div>
+                                </div>
+                            </motion.div>
+                        );
+                    })}
+                </div>
+
+                {/* Frase final */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                    className="text-center mt-20"
+                >
+                    <p className="font-serif text-3xl md:text-4xl italic text-ruby-glow/80 max-w-3xl mx-auto">
+                        "Cada visita es una historia que merece ser contada."
+                    </p>
+                </motion.div>
+            </div>
+        </section>
+    );
+}
+</file>
+
+<file path="src/components/ui/PhotoFrame.tsx">
+"use client";
+
+import Image from "next/image";
+import { cn } from "@/lib/utils";
+
+interface PhotoFrameProps {
+    src?: string;
+    alt?: string;
+    label?: string;
+    className?: string;
+    priority?: boolean;
+}
+
+export default function PhotoFrame({
+                                       src,
+                                       alt = "Imagen",
+                                       label,
+                                       className,
+                                       priority = false
+                                   }: PhotoFrameProps) {
+    return (
+        <div className={cn(
+            "relative overflow-hidden bg-white/5 border border-white/10 group",
+            className
+        )}>
+            {src ? (
+                // Imagen real
+                <>
+                    <Image
+                        src={src}
+                        alt={alt}
+                        fill
+                        priority={priority}
+                        className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100 filter-cinematic"
+                    />
+
+                    {/* Overlay con gradiente */}
+                    <div className="image-overlay" />
+                </>
+            ) : (
+                // Placeholder cuando no hay imagen
+                <>
+                    {/* Patrón de fondo */}
+                    <div className="absolute inset-0 opacity-[0.05] bg-grain" />
+
+                    {/* Contenido del placeholder */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-muted/30 transition-all duration-500 group-hover:text-ruby/50 group-hover:scale-105">
+            <span className="text-xs uppercase tracking-widest border border-white/10 px-3 py-1 rounded-full">
+              {label || "Imagen"}
+            </span>
+                    </div>
+                </>
+            )}
+
+            {/* Textura de grano sutil sobre todo */}
+            <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-grain" />
+        </div>
+    );
+}
 </file>
 
 <file path="public/file.svg">
@@ -340,50 +659,308 @@ export default config;
 <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 2.5h13v10a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1zM0 1h16v11.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 0 12.5zm3.75 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5M7 4.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0m1.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5" fill="#666"/></svg>
 </file>
 
-<file path=".gitignore">
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+<file path="src/app/carta/page.tsx">
+"use client";
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { useEffect, useState } from "react";
 
-# testing
-/coverage
+interface MenuItem {
+    id: string;
+    name: string;
+    description: string;
+    price: string;
+    tags?: string[];
+}
 
-# next.js
-/.next/
-/out/
+interface MenuCategory {
+    id: string;
+    title: string;
+    items: MenuItem[];
+}
 
-# production
-/build
+interface MenuData {
+    categories: MenuCategory[];
+}
 
-# misc
-.DS_Store
-*.pem
+const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.5,
+            ease: "easeOut"
+        }
+    }
+};
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
+export default function MenuPage() {
+    const [menuData, setMenuData] = useState<MenuData | null>(null);
+    const [loading, setLoading] = useState(true);
 
-# env files (can opt-in for committing if needed)
-.env*
+    useEffect(() => {
+        // Cargar el JSON de menú
+        fetch('/data/menu.json')
+            .then(res => res.json())
+            .then(data => {
+                setMenuData(data);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error('Error cargando el menú:', error);
+                setLoading(false);
+            });
+    }, []);
 
-# vercel
-.vercel
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-background flex items-center justify-center">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="text-accent text-xl font-serif animate-pulse"
+                >
+                    Cargando carta...
+                </motion.div>
+            </div>
+        );
+    }
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+    if (!menuData) {
+        return (
+            <div className="min-h-screen bg-background flex items-center justify-center">
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-muted text-xl font-serif"
+                >
+                    Error al cargar la carta
+                </motion.div>
+            </div>
+        );
+    }
 
-.idea
+    return (
+        <div className="min-h-screen bg-background text-foreground pb-20 relative overflow-hidden">
+            {/* Luz ambiental de fondo */}
+            <div className="fixed bottom-0 right-0 w-[500px] h-[500px] bg-primary/20 blur-[150px] rounded-full pointer-events-none z-0" />
+
+            {/* Contenido */}
+            <div className="relative z-10">
+                {/* Header fijo */}
+                <motion.header
+                    initial={{ y: -20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="sticky top-0 z-50 bg-background/80 backdrop-blur-luxury border-b border-white/5 px-6 py-4 flex items-center justify-between"
+                >
+                    <Link
+                        href="/"
+                        className="text-muted hover:text-white transition-colors"
+                        aria-label="Volver al inicio"
+                    >
+                        <ArrowLeft size={20} />
+                    </Link>
+                    <span className="font-serif text-xl tracking-widest text-accent">
+            CHAKRA
+          </span>
+                    <div className="w-5" /> {/* Espaciador */}
+                </motion.header>
+
+                {/* Contenido principal */}
+                <main className="px-6 pt-8 max-w-2xl mx-auto">
+                    {/* Título */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        className="text-center mb-12 space-y-2"
+                    >
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-6">
+                            Nuestra Carta
+                        </h1>
+                        <p className="text-muted text-sm italic">
+                            Una selección de sabores místicos
+                        </p>
+                    </motion.div>
+
+                    {/* Categorías y items */}
+                    <div className="space-y-16">
+                        {menuData.categories.map((category, catIndex) => (
+                            <motion.section
+                                key={category.id}
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.6, delay: catIndex * 0.1 }}
+                            >
+                                {/* Título de categoría */}
+                                <h2 className="text-2xl font-serif text-ruby mb-6 border-b border-primary/30 pb-2 inline-block shadow-glow-ruby">
+                                    {category.title}
+                                </h2>
+
+                                {/* Items de la categoría */}
+                                <div className="space-y-8">
+                                    {category.items.map((item, index) => (
+                                        <motion.article
+                                            key={item.id}
+                                            initial="hidden"
+                                            whileInView="visible"
+                                            viewport={{ once: true }}
+                                            transition={{ delay: index * 0.1 }}
+                                            className="group relative"
+                                            whileHover={{ x: 8 }}
+                                        >
+                                            <div className="flex justify-between items-baseline mb-1">
+                                                <h3 className="text-xl font-serif text-white group-hover:text-accent transition-colors duration-300">
+                                                    {item.name}
+                                                </h3>
+
+                                                {/* Línea decorativa */}
+                                                <div className="flex-grow mx-4 border-b border-white/10 border-dotted h-1 opacity-30 group-hover:opacity-50 transition-opacity" />
+
+                                                <span className="text-lg font-serif text-accent">
+                          {item.price}
+                        </span>
+                                            </div>
+
+                                            <p className="text-muted text-sm font-light leading-relaxed max-w-[90%]">
+                                                {item.description}
+                                            </p>
+
+                                            {/* Tags */}
+                                            {item.tags && item.tags.length > 0 && (
+                                                <div className="mt-2 flex gap-2 flex-wrap">
+                                                    {item.tags.map((tag) => (
+                                                        <motion.span
+                                                            key={tag}
+                                                            initial={{ opacity: 0, scale: 0.8 }}
+                                                            whileInView={{ opacity: 1, scale: 1 }}
+                                                            viewport={{ once: true }}
+                                                            whileHover={{ scale: 1.1 }}
+                                                            className="text-[10px] uppercase tracking-wider text-accent/80 border border-accent/20 px-2 py-0.5 rounded-full"
+                                                        >
+                                                            {tag}
+                                                        </motion.span>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </motion.article>
+                                    ))}
+                                </div>
+                            </motion.section>
+                        ))}
+                    </div>
+                </main>
+
+                {/* Footer de la carta */}
+                <motion.footer
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="mt-20 text-center text-muted text-xs px-6 space-y-2"
+                >
+                    <p>Precios con IVA incluido.</p>
+                    <p>Si tiene alguna alergia, por favor consulte a nuestro personal.</p>
+                </motion.footer>
+            </div>
+        </div>
+    );
+}
+</file>
+
+<file path="src/components/sections/Hero.tsx">
+"use client";
+
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { ChevronDown } from "lucide-react";
+
+export default function Hero() {
+    return (
+        <section className="relative h-screen w-full overflow-hidden flex flex-col items-center justify-center text-center px-4">
+            {/* Fondo atmosférico con luces rojas */}
+            <div className="absolute inset-0 bg-background z-0">
+                {/* Luz central principal */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/40 blur-[120px] rounded-full mix-blend-screen" />
+
+                {/* Luz secundaria más intensa */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-ruby-glow/20 blur-[80px] rounded-full" />
+
+                {/* Textura de grano */}
+                <div className="absolute inset-0 opacity-[0.04] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
+            </div>
+
+            {/* Contenido principal */}
+            <div className="relative z-10 max-w-4xl mx-auto space-y-8">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    className="space-y-6"
+                >
+                    {/* Subtítulo */}
+                    <p className="text-accent text-xs md:text-sm tracking-[0.3em] uppercase font-sans font-semibold text-glow-gold">
+                        Est. 2025
+                    </p>
+
+                    {/* Título principal */}
+                    <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif text-foreground tracking-tight drop-shadow-[0_0_30px_rgba(255,0,0,0.15)]">
+                        CHAKRA
+                    </h1>
+
+                    {/* Descripción */}
+                    <p className="text-muted text-lg md:text-xl font-light font-sans max-w-lg mx-auto">
+                        Cocktails & Lounge
+                    </p>
+                </motion.div>
+
+                {/* Botón CTA */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 0.5 }}
+                    className="pt-10"
+                >
+                    <Link
+                        href="/carta"
+                        className="group relative overflow-hidden px-10 py-4 bg-black/40 backdrop-blur-sm border border-primary/40 text-foreground font-sans tracking-widest uppercase text-xs transition-all duration-500 inline-flex items-center justify-center gap-2 hover:border-ruby/50"
+                    >
+            <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+              Ver Carta
+            </span>
+                        <span className="absolute inset-0 bg-primary/60 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out" />
+                    </Link>
+                </motion.div>
+            </div>
+
+            {/* Indicador de scroll */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.5, duration: 1 }}
+                className="absolute bottom-10 text-white/20 animate-bounce"
+            >
+                <ChevronDown size={24} />
+            </motion.div>
+        </section>
+    );
+}
+</file>
+
+<file path="src/lib/utils.ts">
+// lib/utils.ts
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+    return twMerge(clsx(inputs));
+}
 </file>
 
 <file path="eslint.config.mjs">
@@ -464,6 +1041,140 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+</file>
+
+<file path="tailwind.config.ts">
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+    content: [
+        "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+        "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    ],
+};
+
+export default config;
+</file>
+
+<file path="src/app/layout.tsx">
+import type { Metadata } from "next";
+import { Playfair_Display, Lato } from "next/font/google";
+import "./globals.css";
+
+// Títulos elegantes
+const playfair = Playfair_Display({
+    subsets: ["latin"],
+    variable: "--font-serif",
+    display: "swap",
+});
+
+// Texto legible
+const lato = Lato({
+    subsets: ["latin"],
+    weight: ["300", "400", "700"],
+    variable: "--font-sans",
+    display: "swap",
+});
+
+export const metadata: Metadata = {
+    title: "Chakra | Cocktail Bar",
+    description: "Experience the essence of luxury cocktails.",
+};
+
+export default function RootLayout({
+                                       children,
+                                   }: Readonly<{
+    children: React.ReactNode;
+}>) {
+    return (
+        <html lang="es" className="scroll-smooth">
+        <body
+            className={`${lato.variable} ${playfair.variable} font-sans bg-background text-foreground antialiased selection:bg-primary selection:text-white relative`}
+        >
+        {/* --- GLOBAL NOISE TEXTURE --- */}
+        {/* Se queda fijo al hacer scroll y tiene un z-index altísimo pero no bloquea clicks (pointer-events-none) */}
+        <div className="fixed inset-0 z-[9999] opacity-[0.04] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+
+        {children}
+        </body>
+        </html>
+    );
+}
+</file>
+
+<file path="src/app/page.tsx">
+import Hero from "@/components/sections/Hero";
+import CocktailTeaser from "@/components/sections/CocktailTeaser";
+import Atmosphere from "@/components/sections/Atmosphere";
+import Contact from "@/components/sections/Contact";
+import Footer from "@/components/layout/Footer";
+
+export default function Home() {
+    return (
+        <main className="min-h-screen bg-background text-foreground">
+            {/* Hero Section */}
+            <Hero />
+
+            {/* Sección de Cócteles Destacados */}
+            <CocktailTeaser />
+
+            {/* Sección de Atmósfera/Espacio */}
+            <Atmosphere />
+
+            {/* Sección de Contacto */}
+            <Contact />
+
+            {/* Footer */}
+            <Footer />
+        </main>
+    );
+}
+</file>
+
+<file path=".gitignore">
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+.idea
 </file>
 
 </files>
